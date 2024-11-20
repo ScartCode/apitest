@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React, { useState } from "react";
+import './index.css';
 
-function App() {
+import ClienteForm from "./components/ClienteForm";
+import ClienteList from "./components/ClienteList";
+
+const App = () => {
+  const [clientesActualizados, setClientesActualizados] = useState(false);
+
+  const refreshClientes = () => {
+    setClientesActualizados(!clientesActualizados);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="w-full text-center flex justify-center items-center flex-col gap-3">
+      <h1 class="text-3xl" >Registrar Nuevos Clientes</h1>
+      <ClienteList refreshClientes={refreshClientes} />
+      <ClienteForm refreshClientes={refreshClientes} />
     </div>
   );
-}
+};
 
 export default App;
